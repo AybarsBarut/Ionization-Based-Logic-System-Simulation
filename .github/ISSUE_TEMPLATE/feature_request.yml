@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest a scientific-computing or educational extension
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: What educational or modeling question should this feature address?
+    validations:
+      required: true
+  - type: textarea
+    id: model
+    attributes:
+      label: Proposed model or behavior
+      description: Describe equations, assumptions, API changes, or expected outputs.
+    validations:
+      required: true
+  - type: dropdown
+    id: evidence
+    attributes:
+      label: Parameter basis
+      options:
+        - Conceptual or qualitative
+        - Literature-derived
+        - Experimentally calibrated
+    validations:
+      required: true

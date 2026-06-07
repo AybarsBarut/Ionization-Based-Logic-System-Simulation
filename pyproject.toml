@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ionization-based-logic-system-simulation"
+version = "1.0.0"
+description = "Educational plasma ionization, signal-processing, and threshold-logic simulator"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Aybars Barut" },
+]
+keywords = [
+    "plasma physics",
+    "ionization",
+    "logic gates",
+    "scientific computing",
+    "signal processing",
+    "reaction diffusion",
+    "monte carlo",
+    "simulation",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Education",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.0",
+    "matplotlib>=3.8",
+    "scipy>=1.11",
+]
+
+[project.urls]
+Homepage = "https://github.com/AybarsBarut/Ionization-Based-Logic-System-Simulation"
+Documentation = "https://github.com/AybarsBarut/Ionization-Based-Logic-System-Simulation#readme"
+Issues = "https://github.com/AybarsBarut/Ionization-Based-Logic-System-Simulation/issues"
+Source = "https://github.com/AybarsBarut/Ionization-Based-Logic-System-Simulation"
+
+[project.scripts]
+plasma-logic-sim = "run_experiments:main"
+
+[tool.setuptools]
+py-modules = ["plasma_model", "advanced_models", "run_experiments"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
