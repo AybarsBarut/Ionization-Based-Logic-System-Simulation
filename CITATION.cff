@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this educational simulator, please cite it using this metadata."
+title: "Ionization-Based Logic System Simulation"
+type: software
+authors:
+  - family-names: "Barut"
+    given-names: "Aybars"
+version: 1.0.0
+date-released: 2026-06-07
+license: MIT
+repository-code: "https://github.com/AybarsBarut/Ionization-Based-Logic-System-Simulation"
+url: "https://github.com/AybarsBarut/Ionization-Based-Logic-System-Simulation"
+keywords:
+  - plasma simulation
+  - ionization
+  - threshold logic
+  - reaction-diffusion
+  - scientific Python
+  - signal processing
+abstract: >-
+  An educational scientific-computing project that models simplified plasma
+  ionization, recombination, charged species, optical emission, conductivity,
+  uncertainty, and threshold-based digital logic behavior.
