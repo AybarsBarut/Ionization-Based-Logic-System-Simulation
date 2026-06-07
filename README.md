@@ -1,6 +1,5 @@
 # Ionization-Based Logic System Simulation
 
-[![Tests](https://github.com/AybarsBarut/Ionization-Based-Logic-System-Simulation/actions/workflows/tests.yml/badge.svg)](https://github.com/AybarsBarut/Ionization-Based-Logic-System-Simulation/actions/workflows/tests.yml)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Scientific Python](https://img.shields.io/badge/Scientific-Python-4B8BBE)](https://scientific-python.org/)
