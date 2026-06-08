@@ -4,7 +4,7 @@ title: "Ionization-Based Logic System Simulation"
 type: software
 authors:
   - family-names: "Barut"
-    given-names: "Aybars"
+    given-names: "Fahri Aybars"
 version: 1.0.0
 date-released: 2026-06-07
 license: MIT
@@ -21,3 +21,5 @@ abstract: >-
   An educational scientific-computing project that models simplified plasma
   ionization, recombination, charged species, optical emission, conductivity,
   uncertainty, and threshold-based digital logic behavior.
+date-released: "2026-06-08"
+doi: "10.5281/zenodo.20589245"
