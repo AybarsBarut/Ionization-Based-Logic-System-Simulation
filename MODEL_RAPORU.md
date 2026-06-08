@@ -12,6 +12,27 @@ eşiklenerek 0/1 değerine çevrilir.
 Bu bir nükleer transmutasyon modeli değildir. Çekirdek tepkimesi, atom numarası
 değişimi, yüksek gerilim donanımı veya laboratuvar kontrolü içermez.
 
+### Mimari kapsam
+
+Bu projedeki AND, OR ve XOR adları seri/paralel bağlı iki gaz tüpü devresini
+ifade etmez. Ayrı tüp dalları, ortak balast direnci veya Kirchhoff düğüm
+denklemleri yoktur. Fiziksel girişlerin toplam sürüşe katkısı sıfır, bir, iki
+veya üç aktif giriş için farklı analog plazma/sensör seviyeleri üretir; mantık
+adları bu seviyelerin kalibre edilmiş eşiklerle elde edilen doğruluk tablosuna
+verilir.
+
+Dolayısıyla seri AND devresinde voltaj bölüşümü veya paralel OR devresinde ortak
+direnç geribeslemesi bu modelin hatalı uygulanmış bir parçası değil, henüz
+tanımlanmamış ayrı bir devre-modelleme katmanıdır. Böyle bir genişletme için her
+tüpün iç plazma durumu ile düğüm voltajları ve dal akımlarının birlikte
+çözülmesi gerekir.
+
+Modelde fiziksel bellek tamamen yok değildir. Elektron, iyon, uyarılma ve
+metastabil durumları darbe bittiğinde sonlu rekombinasyon, duvar kaybı ve
+de-uyarılma hızlarıyla söner. Ayrıca iyonlaşma etkinliği keskin bir `if`
+geçişi değil lojistik fonksiyondur. Schmitt histerezisi ise fiziksel tüpün
+maintenance-voltage eğrisi değil, sensör karar katmanındaki ek histerezistir.
+
 ### Deney sorusu
 
 Belirli basınç, sıcaklık, indirgenmiş elektrik alan, darbe ve akış koşullarında
@@ -459,6 +480,11 @@ anlamına gelmez.
 ## 9. Sınırlamalar
 
 - Katsayılar deneysel veriyle kalibre edilmemiştir; nicel tahmin yapılamaz.
+- Ayrık gaz tüplerinden oluşan seri/paralel devre, ortak balast direnci ve
+  Kirchhoff düğüm çözümü yoktur.
+- Paschen yasasına dayalı kırılma voltajı ve ayrı ateşleme/söndürme voltajları
+  uygulanmamıştır. Basınç ve sıcaklık etkisi bu sürümde `E/N`, ideal gaz
+  yoğunluğu ve etkin gaz katsayıları üzerinden temsil edilir.
 - 1B model yalnızca reaksiyon-difüzyon gösterimidir; elektrot kılıfı, filament,
   ark ve plazma dalgalarını çözmez.
 - Negatif iyon tek toplu türdür; ayrıntılı moleküler hava kimyası yoktur.

@@ -21,6 +21,7 @@ from plasma_model import (
     GasProperties,
     PlasmaConfig,
     full_adder_truth_table,
+    logistic_activation,
     logic_truth_tables,
     schmitt_trigger,
     simulate_plasma,
@@ -109,6 +110,46 @@ class PlasmaModelTests(unittest.TestCase):
         sweep = threshold_sweep(result, [0.2, 0.4, 0.6, 0.8])
         high_fraction = sweep["tail_high_fraction"].to_numpy()
         self.assertTrue(np.all(np.diff(high_fraction) <= 1.0e-12))
+
+    def test_ionization_activation_is_smooth(self) -> None:
+        threshold = 115.0
+        width = 14.0
+        below = logistic_activation(threshold - 0.01, threshold, width)
+        midpoint = logistic_activation(threshold, threshold, width)
+        above = logistic_activation(threshold + 0.01, threshold, width)
+        self.assertLess(below, midpoint)
+        self.assertAlmostEqual(midpoint, 0.5)
+        self.assertGreater(above, midpoint)
+        self.assertLess(above - below, 0.01)
+
+    def test_plasma_state_persists_after_pulse(self) -> None:
+        config = PlasmaConfig(
+            gas="argon",
+            pressure_pa=4_000.0,
+            temperature_k=300.0,
+            electric_field_v_m=220_000.0,
+            applied_voltage_v=1_100.0,
+            pulse_frequency_hz=500.0,
+            pulse_width_s=4.0e-4,
+            gas_flow_sccm=40.0,
+            measurement_noise_std=0.0,
+            initial_ionization_fraction=1.0e-10,
+            duration_s=1.5e-3,
+            dt_s=1.0e-5,
+        )
+        result = simulate_plasma(config)
+        data = result.data
+        pulse_end_index = int(round(config.pulse_width_s / config.dt_s))
+        afterglow_index = pulse_end_index + int(round(2.0e-4 / config.dt_s))
+        density_at_pulse_end = float(
+            data.iloc[pulse_end_index]["electron_density_m3"]
+        )
+        density_in_afterglow = float(
+            data.iloc[afterglow_index]["electron_density_m3"]
+        )
+        initial_density = float(data.iloc[0]["electron_density_m3"])
+        self.assertGreater(density_in_afterglow, initial_density)
+        self.assertGreater(density_at_pulse_end, density_in_afterglow)
 
     def test_full_adder(self) -> None:
         config = replace(

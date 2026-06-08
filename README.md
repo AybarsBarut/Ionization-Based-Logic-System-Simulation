@@ -19,6 +19,29 @@ This is a conceptual scientific-computing project. It is not a nuclear
 transmutation model, laboratory control system, high-voltage design guide, or
 validated plasma chemistry package.
 
+## Architecture and Scope
+
+The logic layer is a calibrated response classifier, not a schematic of
+series- or parallel-connected discharge tubes.
+
+- `A`, `B`, and `CARRY_IN` change the aggregate physical drive level.
+- The plasma ODEs produce conductivity and optical-emission responses.
+- Calibrated thresholds and response windows digitize those analog levels.
+- AND and OR therefore describe the resulting truth table, not Kirchhoff
+  topologies made from two independently switched tubes.
+
+There is no `if V_A >= V_breakdown` tube switch in the implementation. A
+series/parallel gas-tube circuit would require a separate nonlinear circuit
+layer that solves node voltages and branch currents together with each tube's
+internal plasma state. Claims about equal voltage division, common ballast
+resistors, or per-tube maintenance voltage do not apply to the current model.
+
+The current model does include temporal memory: electron, ion, excitation, and
+metastable states decay over finite rate constants after a pulse. Ionization
+activation is logistic rather than an instantaneous current step. The
+Schmitt-trigger example is an additional sensor-level hysteresis stage; it is
+not presented as the physical discharge's maintenance-voltage curve.
+
 ## Highlights
 
 - Zero-dimensional mean-field plasma kinetics
@@ -283,6 +306,10 @@ recreated with one command. Selected figures are versioned in `docs/images`.
 - Coefficients are effective educational parameters, not validated reaction
   cross sections.
 - The model is not suitable for laboratory safety decisions or device control.
+- It does not solve Kirchhoff equations for a network of discrete gas tubes,
+  ballast resistors, or shared electrical nodes.
+- It does not implement a Paschen-law breakdown-voltage curve or an explicit
+  per-tube breakdown/maintenance-voltage pair.
 - The one-dimensional model does not solve Poisson's equation or electrode
   sheath dynamics.
 - Air chemistry is represented by aggregate effective species.
